@@ -10,7 +10,14 @@
 
 # Not ignore file I want to push
 
-
+!docker-compose.yml
+!.env.template
+!www
+!www/.gitkeep
+!docker
+!docker/**
+docker/db/**
+!docker/db/.gitkeep
 
 # End by ignoring git files
 

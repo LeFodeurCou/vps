@@ -1,0 +1,38 @@
+server {
+	listen 80;
+	listen [::]:80;
+	server_name lefodeurcou.fr www.lefodeurcou.fr;
+
+	root /usr/share/nginx/html/lefodeurcou.local;
+
+	index index.php index.html index.htm;
+
+	# location ~ {
+	# 	try_files $uri $uri/ =404;
+	# }
+
+	location / {
+		rewrite ^(/api.*)$ /api/ break;
+
+		rewrite ^(/crazy-admin.*)$ /admin/index.html break;
+
+    	rewrite ^(.*\.(css|js|ttf|woff|woff2|png|jpg|gif|ico|pdf))$ /public_html/dist/$1 break;
+    	rewrite ^ /public_html/dist/index.html break;
+	}
+
+
+# letsencript (certbot)
+	location /.well-known/acme-challenge/ {
+		allow all;
+		root /usr/share/nginx/html/letsencrypt/;
+	}
+
+
+	location ~ \.php$ {
+		root           /script/lefodeurcou.local;
+		include        fastcgi_params;
+		fastcgi_pass   php:9000;
+		fastcgi_index  index.php;
+		fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+	}
+}
