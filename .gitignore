@@ -1,0 +1,22 @@
+# Start by ignoring all
+
+*
+/*
+**/*
+
+# Ignore all files named .DS_Store or ending with .log
+**/.DS_Store
+**.log
+
+# Not ignore file I want to push
+
+
+
+# End by ignoring git files
+
+**/.git
+**/.gitignore
+!.github
+!.github/**
+!.gitignore
+!README.md

@@ -1,0 +1,28 @@
+name: vps-ci
+on:
+  push:
+    branches: [ ]
+
+jobs:
+
+  build-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repo
+        uses: actions/checkout@v3
+
+      # - name: 🐳 Build image 🐳
+        # run: docker build -t minecraft-server:1.17.1 .
+
+      - name: 🐸 Login to JFrog 🐸
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ secrets.JFROG_REGISTRY}}
+          username: ${{ secrets.JFROG_USER }}
+          password: ${{ secrets.JFROG_PASSWORD }}
+
+      # - name: 🐳 Tag image 🐸
+        # run: docker tag minecraft-server:1.17.1 lefodeurcou.jfrog.io/minecraft-server-docker/minecraft-server:1.17.1-$GITHUB_SHA
+
+      # - name: 🐸 Send as artifact 🐸
+        # run: docker push lefodeurcou.jfrog.io/minecraft-server-docker/minecraft-server:1.17.1-$GITHUB_SHA
