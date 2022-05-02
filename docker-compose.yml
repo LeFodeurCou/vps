@@ -26,6 +26,17 @@ services:
     depends_on:
       - "db"
 
+  composer:
+    build: ./docker/composer
+    entrypoint: /home/composer/docker/composer/entrypoint.sh
+    container_name: vps-composer
+    networks:
+      - web
+    volumes:
+      - "./:/home/composer"
+    depends_on:
+      - php
+
   db:
     image: mysql:8.0
     container_name : vps-db
