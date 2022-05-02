@@ -1,0 +1,15 @@
+{
+    "name": "nagrarok/api",
+    "description": "Api for portfolio project",
+    "type": "project",
+    "authors": [
+        {
+            "name": "LeFodeurCou",
+            "email": "lefodeurcou@gmail.com"
+        }
+    ],
+    "require": {
+        "lefodeurcou/crazy-router": "^1.0",
+        "phpmailer/phpmailer": "^6.5"
+    }
+}

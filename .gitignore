@@ -13,7 +13,7 @@
 !docker-compose.yml
 !.env.template
 !www
-!www/.gitkeep
+!www/**
 !docker
 !docker/**
 docker/db/**
