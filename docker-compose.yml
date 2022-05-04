@@ -12,7 +12,7 @@ services:
       - "./docker/nginx/sites-available:/etc/nginx/sites-available"
     ports:
       - "80:80"
-      # - "443:443"
+      - "443:443"
     depends_on:
       - "php"
 
@@ -27,7 +27,7 @@ services:
       - "db"
 
   composer:
-    build: ./docker/composer
+    image: composer:2.3.5
     entrypoint: /home/composer/docker/composer/entrypoint.sh
     container_name: vps-composer
     networks:
@@ -36,6 +36,18 @@ services:
       - "./:/home/composer"
     depends_on:
       - php
+
+  npm:
+    image: node:18.1.0-alpine3.14
+    entrypoint: /home/npm/docker/npm/entrypoint.sh
+    container_name: vps-npm
+    networks:
+      - web
+    volumes:
+      - "./:/home/npm"
+    depends_on:
+      - php
+
 
   db:
     image: mysql:8.0
